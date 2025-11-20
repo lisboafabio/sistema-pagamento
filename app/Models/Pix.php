@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\PixStatusEnum;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Pix extends Model
 {
@@ -14,11 +13,18 @@ class Pix extends Model
     protected $fillable = [
         'sub_acquirer_id',
         'amount',
-        'paid_at'
+        'paid_at',
+        'currency',
+        'expires_at',
+        'status'
     ];
 
-    public function bankStatement(): MorphMany
+    protected $casts = [
+        'status' => PixStatusEnum::class,
+    ];
+
+    public function subAcquirerBankTransaction(): HasOne
     {
-        return $this->MorphMany(SubAcquirersBankTransactions::class, 'bankStatementable');
+        return $this->hasOne(SubAcquirersBankTransactions::class, 'event_id', 'id');
     }
 }

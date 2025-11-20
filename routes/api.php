@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\PixController;
 use App\Http\Controllers\SubAcquirerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WithdrawController;
 
 Route::prefix('user')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('user.index');
@@ -17,4 +19,14 @@ Route::prefix('subacquirer')->group(function () {
     Route::post('/', [SubAcquirerController::class, 'create'])->name('subacquirer.store');
     Route::put('/{id}', [SubAcquirerController::class, 'update'])->name('subacquirer.update');
     Route::delete('/{id}', [SubAcquirerController::class, 'delete'])->name('subacquirer.delete');
+});
+
+Route::prefix('pix')->group(function () {
+    Route::get('/{id}', [PixController::class, 'getById'])->name('pix.byId');
+    Route::post('/', [PixController::class, 'create'])->name('pix.store');
+});
+
+Route::prefix('withdraw')->group(function () {
+    Route::get('/{id}', [WithdrawController::class, 'getById'])->name('withdraw.getById');
+    Route::post('/', [WithdrawController::class, 'create'])->name('withdraw.store');
 });

@@ -2,20 +2,21 @@
 
 namespace App\Dto;
 
-use Spatie\LaravelData\Attributes\MapInputName;
-use Spatie\LaravelData\Attributes\MapOutputName;
 use Spatie\LaravelData\Attributes\Validation\Sometimes;
 use Spatie\LaravelData\Data;
 
 class UpdateUserDto extends Data
 {
     #[Sometimes]
-    private string $name;
+    public string $name;
 
     #[Sometimes]
-    private string $email;
+    public string $email;
 
     #[Sometimes]
-    private string $password;
+    public string $password;
+
+    #[Sometimes]
+    public string $document;
 
 }
