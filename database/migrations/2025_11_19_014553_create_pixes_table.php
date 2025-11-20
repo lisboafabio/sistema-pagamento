@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sub_acquirer_id');
             $table->foreign('sub_acquirer_id')->references('id')->on('sub_acquirers')->onDelete('cascade');
             $table->integer('amount');
-            $table->datetime('paid_at')->default(null);
+            $table->datetime('paid_at')->nullable();
             $table->timestamps();
         });
     }

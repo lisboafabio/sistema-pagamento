@@ -7,13 +7,11 @@ use Spatie\LaravelData\Data;
 
 class CreateUserDto extends Data
 {
-    public function __construct(
-        #[MapInputName('sub_acquirer_id')]
-        public int $subAcquirerId,
-        public string $name,
-        public string $email,
-        public string $password,
-    ){}
+    #[MapInputName('sub_acquirer_id')]
+    public int $subAcquirerId;
+    public string $name;
+    public string $email;
+    public string $password;
 
     public function userData(): array
     {

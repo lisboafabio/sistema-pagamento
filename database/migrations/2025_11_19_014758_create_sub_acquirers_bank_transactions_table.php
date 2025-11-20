@@ -14,11 +14,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sub_acquirers_bank_transactions', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->unsignedBigInteger('sub_acquirer_id');
             $table->foreign('sub_acquirer_id')->references('id')->on('sub_acquirers')->onDelete('cascade');
             $table->enum('event', array_column(BankStatementEventEnum::cases(), 'value'));
-            $table->unsignedBigInteger('event_id');
+            $table->string('event_id');
             $table->integer('amount');
             $table->timestamps();
         });
